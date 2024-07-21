@@ -5,8 +5,8 @@ import gamesAPI from '../api/games-api'
 
 export default function Details(){
     const [game,setGame] = useState({})
+    const [comment,setComment] = useState('')
     const {gameId} = useParams()
-    console.log(gameId)
     useEffect(()=>{
         async function fetchData(){
             const response = await gamesAPI.getOne(gameId)
@@ -15,6 +15,10 @@ export default function Details(){
         }
         fetchData()
     },[])
+    function commentSubmitHandler(e){
+        e.preventDefault()
+        console.log(comment)
+    }
     return(
         <section id="game-details">
         <h1>Game Details</h1>
@@ -58,9 +62,14 @@ export default function Details(){
         <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
         <article className="create-comment">
             <label>Add new comment:</label>
-            <form className="form">
-                <textarea name="comment" placeholder="Comment......"></textarea>
-                <input className="btn submit" type="submit" value="Add Comment"/>
+            <form className="form" onSubmit={commentSubmitHandler}>
+                <textarea name="comment" placeholder="Comment......"value={comment}
+                onChange={(e)=>setComment(e.target.value)}></textarea>
+                <input 
+                className="btn submit" 
+                type="submit" 
+                
+                />
             </form>
         </article>
 

@@ -10,7 +10,7 @@ async function getAll() {
 async function getFirstThree() {
     const result =  await requester.get(BASE_URL)
     const games = Object.values(result)
-    const firstThree = games.slice(0,3)
+    const firstThree = games.reverse().slice(0,3)
     return firstThree
 }
 
