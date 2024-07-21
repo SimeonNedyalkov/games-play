@@ -2,7 +2,7 @@ import Header from "./components/Header"
 import Login from './components/users/Login.jsx'
 import Register from './components/users/Register'
 import Home from "./components/Home"
-import Catalog from './components/Catalog.jsx'
+import Catalog from './components/gamesList/Catalog.jsx'
 import GameCreate from './components/GameCreate'
 import {Routes,Route} from 'react-router-dom'
 function App() {
