@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import {useParams} from 'react-router-dom'
 
 import gamesAPI from '../api/games-api'
-
+import commentAPI from "../api/comments-api"
 export default function Details(){
     const [game,setGame] = useState({})
+    const [username,setUsername] = useState('')
     const [comment,setComment] = useState('')
     const {gameId} = useParams()
     useEffect(()=>{
@@ -17,7 +18,9 @@ export default function Details(){
     },[])
     function commentSubmitHandler(e){
         e.preventDefault()
+        console.log(username)
         console.log(comment)
+        commentAPI.createComment(gameId,username,comment)
     }
     return(
         <section id="game-details">
@@ -63,6 +66,12 @@ export default function Details(){
         <article className="create-comment">
             <label>Add new comment:</label>
             <form className="form" onSubmit={commentSubmitHandler}>
+                <input 
+                type="text"
+                name="username" 
+                placeholder="Pesho"
+                value={username}
+                onChange={(e)=>setUsername(e.target.value)}></input>
                 <textarea name="comment" placeholder="Comment......"value={comment}
                 onChange={(e)=>setComment(e.target.value)}></textarea>
                 <input 

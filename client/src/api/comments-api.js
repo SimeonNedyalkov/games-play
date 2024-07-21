@@ -2,7 +2,7 @@ import requesterAPI from "./requester"
 
 const BASE_URL = 'https://localhost:3030/data/games'
 
-const buildUrl = (gameId) => `${BASE_URL}/${gameId}/comments`
+const buildUrl = (gameId) => `${BASE_URL}/${gameId}`
 async function createComment(gameID,username,text){
     const response = await requesterAPI.post(buildUrl(gameID),{username,text})
     return response
@@ -18,4 +18,5 @@ const commentAPI = {
     createComment,
     getAllCommentsForGame
 }
+
 export default commentAPI
