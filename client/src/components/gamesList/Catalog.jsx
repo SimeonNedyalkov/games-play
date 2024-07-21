@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import * as gamesApi from '../../api/games-api'
+import gameAPI from '../../api/games-api'
 import GameListItem from './GameListItem';
 
 export default function Catalog(){
     const [games,setGames] = useState([])
     useEffect(()=>{
         async function fetchData() {
-            const response = await gamesApi.getAll();
+            const response = await gameAPI.getAll();
             setGames(response)
             console.log(response)
           }

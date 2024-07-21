@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import {useParams} from 'react-router-dom'
 
-import * as requester from '../api/games-api'
+import gamesAPI from '../api/games-api'
 
 export default function Details(){
     const [game,setGame] = useState({})
@@ -9,7 +9,7 @@ export default function Details(){
     console.log(gameId)
     useEffect(()=>{
         async function fetchData(){
-            const response = await requester.getOne(gameId)
+            const response = await gamesAPI.getOne(gameId)
             setGame(response)
             console.log(game)
         }
