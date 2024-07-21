@@ -8,7 +8,7 @@ export default function Catalog(){
         async function fetchData() {
             const response = await gamesApi.getAll();
             setGames(response)
-            console.log(games)
+            console.log(response)
           }
           fetchData();
         }, []);

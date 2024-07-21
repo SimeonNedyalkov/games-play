@@ -7,3 +7,8 @@ export const getAll = async () =>{
     const games = Object.values(result)
     return games
 }
+
+export const getOne = async (id) =>{
+    const result =  await requester.get(`${BASE_URL}/${id}`)
+    return result
+}

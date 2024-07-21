@@ -4,6 +4,7 @@ import Register from './components/users/Register'
 import Home from "./components/Home"
 import Catalog from './components/gamesList/Catalog.jsx'
 import GameCreate from './components/GameCreate'
+import Details from './components/Details.jsx'
 import {Routes,Route} from 'react-router-dom'
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/all-games" element={<Catalog/>}/>
+        <Route path="/games/:gameId/details" element={<Details/>}/>
         <Route path='/create-game' element={<GameCreate/>}/>
       </Routes>
     </div>
