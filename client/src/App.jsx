@@ -6,9 +6,21 @@ import Catalog from './components/gamesList/Catalog.jsx'
 import GameCreate from './components/GameCreate'
 import Details from './components/Details.jsx'
 import {Routes,Route} from 'react-router-dom'
+import UserContext from "./contexts/userContext.js"
+import { useState } from "react"
 function App() {
-
+  const [authState,setAuthstate] = useState({})
+  const changeAuthState = (state) =>{
+    setAuthstate(state)
+  }
+  const contextData = {
+    email:authState.email,
+    accessToken:authState.accessToken,
+    isAuthenticated:!!authState.email,
+    changeAuthState
+  }
   return (
+    <UserContext.Provider value={contextData}>
     <div id="box">
     <Header/>
     <main id="main-content">
@@ -22,6 +34,7 @@ function App() {
         <Route path='/create-game' element={<GameCreate/>}/>
       </Routes>
     </div>
+    </UserContext.Provider>
   )
 }
 
