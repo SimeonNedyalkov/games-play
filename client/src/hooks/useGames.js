@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import gameAPI from '../api/games-api'
-export function useGetAllGames(){
+function useGetAllGames(){
     const [games,setGames] = useState([])
     useEffect(()=>{
         async function fetchData() {
@@ -12,7 +12,7 @@ export function useGetAllGames(){
         }, []);
         return [games,setGames]
 }
-export function useGetOneGames(gameId){
+function useGetOneGames(gameId){
     const [game,setGame] = useState([])
     useEffect(()=>{
         async function fetchData() {
@@ -24,9 +24,22 @@ export function useGetOneGames(gameId){
         }, [gameId]);
         return [game,setGame]
 }
+function useFirstThreeGames(){
+    const [firstThreeGames, setFirstThreeGames] = useState([])
+    useEffect(()=>{
+        async function fetchData(){
+            const response = await gameAPI.getFirstThree()
+            setFirstThreeGames(response)
+        }
+        fetchData()
+    },[])
+        return [firstThreeGames,setFirstThreeGames]
+}
+
 const gameHook = {
     useGetAllGames,
-    useGetOneGames
+    useGetOneGames,
+    useFirstThreeGames
 }
 
 export default gameHook

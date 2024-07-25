@@ -1,15 +1,7 @@
-import { useEffect, useState } from 'react'
-import gameAPI from '../api/games-api'
+import gameHook from '../hooks/useGames'
 export default function Home(){
-    const [firstThreeGames, setFirstThreeGames] = useState([])
-    useEffect(()=>{
-        async function fetchData(){
-            const response = await gameAPI.getFirstThree()
-            setFirstThreeGames(response)
-            
-        }
-        fetchData()
-    },[])
+    const [firstThreeGames,setFirstThreeGames] = gameHook.useFirstThreeGames()
+    
     console.log(firstThreeGames)
     return (
         <section id="welcome-world">
