@@ -11,6 +11,8 @@ import { useState } from "react"
 function App() {
   const [authState,setAuthstate] = useState({})
   const changeAuthState = (state) =>{
+    // Fix this, bc its bullshit, by implementing persistant auth state
+    localStorage.setItem('accessToken',state.accessToken)
     setAuthstate(state)
   }
   const contextData = {

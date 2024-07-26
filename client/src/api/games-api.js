@@ -19,7 +19,7 @@ async function getOne(id) {
     return result
 }
 async function createGame(data) {
-    const result =  await requester.post(`${BASE_URL}`,{data})
+    const result =  await requester.post(`${BASE_URL}`,{...data})
     return result
 }
 

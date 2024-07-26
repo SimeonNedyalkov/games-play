@@ -1,6 +1,5 @@
 import gameAPI from "../api/games-api"
 import { useForm } from "../hooks/useForm"
-import gameHook from "../hooks/useGames"
 import {useNavigate} from 'react-router-dom'
 
 export default function GameCreate(){
@@ -16,7 +15,7 @@ export default function GameCreate(){
     async function createHandler(values){
         try {
             const  {_id : gameId} = await gameAPI.createGame(values)
-            navigation(`/game/${gameId}`)
+            navigation(`/games/${gameId}/details`)
         } catch (error) {
             console.log(error.message)
         }
