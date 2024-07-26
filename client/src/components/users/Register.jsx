@@ -1,13 +1,20 @@
 import { useNavigate } from "react-router-dom"
 import { useRegister } from "../../hooks/useAuth"
 import { useForm } from "../../hooks/useForm"
+import { useState } from "react"
 
 export default function Register(){
+    const [error,setError] = useState('')
     const register = useRegister()
     const navigate = useNavigate()
     const registerHandler = async ({email,password,rePass})=>{
+        if(password !== rePass){
+            setError('Password missmatch!')
+            return
+        }
         try {
-            await register({email,password,rePass})
+            const resp = await register(email,password)
+            console.log(resp)
             navigate('/')
         } catch (error) {
             console.log(error.message)
@@ -52,7 +59,10 @@ export default function Register(){
                     value={values.rePass}
                     onChange={changeHandler}
                     />
-
+                    {error && (<p className="field">
+                        <span>{error}</span>
+                    </p>)}
+                    
                     <input className="btn submit" type="submit" value="Register"/>
 
                     <p className="field">

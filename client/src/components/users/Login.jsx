@@ -9,8 +9,7 @@ export default function Login(){
         {email:'',password:''},
         async ({email,password})=>{
             try {
-            const resp = await login(email,password)
-            console.log(resp)
+                await login(email,password)
                 navigation('/')
             } catch (error) {
                 
