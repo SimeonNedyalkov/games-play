@@ -35,11 +35,23 @@ function useFirstThreeGames(){
     },[])
         return [firstThreeGames,setFirstThreeGames]
 }
+function useCreateGame(gameData){
+    const [createdGame, setCreatedGame] = useState([])
+    useEffect(()=>{
+        async function fetchData(){
+            const response = await gameAPI.createGame(gameData)
+            setCreatedGame(response)
+        }
+        fetchData()
+    },[])
+        return [createdGame,setCreatedGame]
+}
 
 const gameHook = {
     useGetAllGames,
     useGetOneGames,
-    useFirstThreeGames
+    useFirstThreeGames,
+    useCreateGame
 }
 
 export default gameHook

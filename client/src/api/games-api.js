@@ -18,10 +18,15 @@ async function getOne(id) {
     const result =  await requester.get(`${BASE_URL}/${id}`)
     return result
 }
+async function createGame(data) {
+    const result =  await requester.post(`${BASE_URL}`,{data})
+    return result
+}
 
 const gameAPI = {
     getAll,
     getOne,
-    getFirstThree
+    getFirstThree,
+    createGame
 }
 export default gameAPI
