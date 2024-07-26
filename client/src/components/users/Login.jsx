@@ -1,9 +1,9 @@
-import useAuthHook from "../../hooks/useAuth"
+import { useLogin } from "../../hooks/useAuth"
 import { useForm } from "../../hooks/useForm"
 import {useNavigate} from 'react-router-dom'
 
 export default function Login(){
-    const login = useAuthHook.useLogin()
+    const login = useLogin()
     const navigation = useNavigate()
     const {submitHandler,changeHandler,values} = useForm(
         {email:'',password:''},

@@ -2,7 +2,7 @@ import { useContext } from "react"
 import userAPI from "../api/users-api"
 import UserContext from "../contexts/userContext"
 
-function useLogin(){
+export function useLogin(){
     const {changeAuthState} = useContext(UserContext)
     async function loginHandler(email,password){
         const result = await userAPI.login(email,password)
@@ -10,7 +10,7 @@ function useLogin(){
     }
     return loginHandler
 }
-function useRegister(){
+export function useRegister(){
     const {changeAuthState} = useContext(UserContext)
     async function registerHandler(email,password){
         const result = await userAPI.register(email,password)
@@ -18,9 +18,5 @@ function useRegister(){
     }
     return registerHandler
 }
-const useAuthHook = {
-    useLogin,
-    useRegister
-}
 
-export default useAuthHook
+

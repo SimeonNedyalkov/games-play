@@ -7,12 +7,13 @@ async function login(email,password){
     return authData
 }
 async function register(email,password){
-    const authData = await requesterAPI.post(`${BASE_URL}/login`,{email,password})
+    const authData = await requesterAPI.post(`${BASE_URL}/register`,{email,password})
     return authData
 }
 
 const userAPI = {
-    login
+    login,
+    register
 }
 
 export default userAPI
