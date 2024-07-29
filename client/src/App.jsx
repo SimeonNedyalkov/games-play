@@ -6,23 +6,13 @@ import Catalog from './components/gamesList/Catalog.jsx'
 import GameCreate from './components/GameCreate'
 import Details from './components/Details.jsx'
 import {Routes,Route} from 'react-router-dom'
-import UserContext from "./contexts/userContext.js"
-import { useState } from "react"
+import {AuthContextProvider} from "./contexts/userContext.jsx"
+
 function App() {
-  const [authState,setAuthstate] = useState({})
-  const changeAuthState = (state) =>{
-    // Fix this, bc its bullshit, by implementing persistant auth state
-    localStorage.setItem('accessToken',state.accessToken)
-    setAuthstate(state)
-  }
-  const contextData = {
-    email:authState.email,
-    accessToken:authState.accessToken,
-    isAuthenticated:!!authState.email,
-    changeAuthState
-  }
+  
+  
   return (
-    <UserContext.Provider value={contextData}>
+    <AuthContextProvider>
     <div id="box">
     <Header/>
     <main id="main-content">
@@ -36,7 +26,7 @@ function App() {
         <Route path='/create-game' element={<GameCreate/>}/>
       </Routes>
     </div>
-    </UserContext.Provider>
+    </AuthContextProvider>
   )
 }
 
