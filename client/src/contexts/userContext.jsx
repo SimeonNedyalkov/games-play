@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { useState } from "react"
+import usePersistedState from '../hooks/usePersistedState'
 
 export const UserContext = createContext({
     userId:'',
@@ -10,7 +10,7 @@ export const UserContext = createContext({
 })
 
 export function AuthContextProvider(props){
-    const [authState,setAuthstate] = useState({})
+    const [authState,setAuthstate] = usePersistedState('auth',{})
     
     const changeAuthState = (state) =>{
         // Fix this, bc its bullshit, by implementing persistant auth state

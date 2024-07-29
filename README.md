@@ -12,3 +12,4 @@ node server.js
 ## ToDO
 
 [x] -- Extract auth state from App component 
+[] -- Persist auth state
