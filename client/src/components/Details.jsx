@@ -1,21 +1,24 @@
 import {useParams} from 'react-router-dom'
 import gameHook from '../hooks/useGames.js';
-import { useComments } from "../hooks/useComments.js";
+import { useComments, useGetComments } from "../hooks/useComments.js";
 import { useForm } from "../hooks/useForm.js";
-const initialValues = {
-    comment:''
-}
+
 export default function Details(){
+    const initialValues = {
+        comment:''
+    }
     const {gameId} = useParams()
     const [game] = gameHook.useGetOneGames(gameId)
-
+    const [comments,setComments] = useGetComments(gameId)
+    
     const createGame = useComments()
 
-    const {changeHandler,submitHandler,values} = useForm(initialValues,({comment})=>{
+    const {changeHandler,submitHandler,values} = useForm(initialValues,async ({comment})=>{
         console.log(values)
-        createGame(gameId,comment)
+        const newComment = await createGame(gameId,comment)
+        setComments(oldComments=>[...oldComments,newComment])
     })
-
+    console.log(comments)
     return(
         <section id="game-details">
         <h1>Game Details</h1>
