@@ -1363,7 +1363,13 @@
             }
         },
         comments: {
-        
+            "fffd85ad-269a-4e94-a3ed-d3df6b82af16":{
+                "_ownerId": "7c225cd9-515c-436d-b0fd-e3ef50ff2c77",
+                "gameID": "1840a313-225c-416a-817a-9954d4609f7c",
+                "text": "nice",
+                "_createdOn": 1722261827962,
+                "_id": "fffd85ad-269a-4e94-a3ed-d3df6b82af16"
+            }
         }
     };
     var rules$1 = {

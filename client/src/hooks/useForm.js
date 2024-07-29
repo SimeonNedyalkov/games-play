@@ -13,6 +13,7 @@ export function useForm(initialValue,submitCallBack){
     const submitHandler = (e) =>{
         e.preventDefault()
         submitCallBack(values)
+        setValues(initialValue)
     }
 
     return {values,changeHandler,submitHandler}

@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react"
 import {useParams} from 'react-router-dom'
 import gameHook from '../hooks/useGames.js';
-
-import gamesAPI from '../api/games-api'
-import commentAPI from "../api/comments-api"
+import { useComments } from "../hooks/useComments.js";
+import { useForm } from "../hooks/useForm.js";
+const initialValues = {
+    comment:''
+}
 export default function Details(){
-    const [username,setUsername] = useState('')
-    const [comment,setComment] = useState('')
     const {gameId} = useParams()
     const [game] = gameHook.useGetOneGames(gameId)
-    
-    function commentSubmitHandler(e){
-        e.preventDefault()
-        console.log(username)
-        console.log(comment)
-        commentAPI.createComment(gameId,username,comment)
-    }
+
+    const createGame = useComments()
+
+    const {changeHandler,submitHandler,values} = useForm(initialValues,({comment})=>{
+        console.log(values)
+        createGame(gameId,comment)
+    })
+
     return(
         <section id="game-details">
         <h1>Game Details</h1>
@@ -59,19 +59,15 @@ export default function Details(){
         <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
         <article className="create-comment">
             <label>Add new comment:</label>
-            <form className="form" onSubmit={commentSubmitHandler}>
-                <input 
-                type="text"
-                name="username" 
-                placeholder="Pesho"
-                value={username}
-                onChange={(e)=>setUsername(e.target.value)}></input>
-                <textarea name="comment" placeholder="Comment......"value={comment}
-                onChange={(e)=>setComment(e.target.value)}></textarea>
+            <form className="form" onSubmit={submitHandler}>
+                <textarea 
+                name="comment" 
+                placeholder="Comment......"
+                value={values.comment}
+                onChange={changeHandler}></textarea>
                 <input 
                 className="btn submit" 
-                type="submit" 
-                
+                type="submit"
                 />
             </form>
         </article>
