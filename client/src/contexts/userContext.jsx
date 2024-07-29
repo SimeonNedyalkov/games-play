@@ -6,23 +6,27 @@ export const UserContext = createContext({
     email:'',
     accessToken:'',
     isAuthenticated:false,
-    changeAuthState:()=>null
+    changeAuthState: (changeAuthState = {}) => null,
+    logout: () => null,
 })
 
 export function AuthContextProvider(props){
     const [authState,setAuthstate] = usePersistedState('auth',{})
     
     const changeAuthState = (state) =>{
-        // Fix this, bc its bullshit, by implementing persistant auth state
-        localStorage.setItem('accessToken',state.accessToken)
         setAuthstate(state)
       }
 
+      const logout = () =>{
+        setAuthstate(null)
+      }
+
       const contextData = {
-        email:authState.email,
-        accessToken:authState.accessToken,
-        isAuthenticated:!!authState.email,
-        changeAuthState
+        email:authState?.email,
+        accessToken:authState?.accessToken,
+        isAuthenticated:!!authState?.email,
+        changeAuthState,
+        logout
       }
 
     return(

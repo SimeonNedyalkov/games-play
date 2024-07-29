@@ -19,5 +19,14 @@ export function useRegister(){
     }
     return registerHandler
 }
+export function useLogout(){
+    const {logout:sessionLogout} = useAuthContext()
+
+    async function logoutHandler(){
+        await userAPI.logout()
+        sessionLogout()
+    }
+    return logoutHandler
+}
 
 

@@ -11,9 +11,14 @@ async function register(email,password){
     return authData
 }
 
+async function logout(){
+    return await requesterAPI.get(`${BASE_URL}/logout`)
+}
+
 const userAPI = {
     login,
-    register
+    register,
+    logout
 }
 
 export default userAPI

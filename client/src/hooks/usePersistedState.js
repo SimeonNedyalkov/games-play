@@ -9,10 +9,13 @@ export default function usePersistedState(key,initialState){
         const authData = JSON.parse(persistedAuth)
         return authData
     })
-    const setPersistedState = (value) =>{
-        const newState = typeof value === 'function' ? value() : value
+    const updateState = (value) =>{
+        const newState = typeof value === 'function' ? value(state) : value
+        
         localStorage.setItem(key,JSON.stringify(newState))
+        
+        
         setState(newState)
     }
-    return [state,setPersistedState]
+    return [state,updateState]
 }
