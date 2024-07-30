@@ -23,6 +23,7 @@ export function AuthContextProvider(props){
 
       const contextData = {
         email:authState?.email,
+        userId:authState?._id,
         accessToken:authState?.accessToken,
         isAuthenticated:!!authState?.email,
         changeAuthState,
