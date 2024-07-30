@@ -5,19 +5,25 @@ import { useForm } from "../hooks/useForm.js";
 
 export default function Details(){
     const initialValues = {
-        comment:''
+        comment:'',
     }
     const {gameId} = useParams()
-    const [game] = gameHook.useGetOneGames(gameId)
+    const createComment = useComments()
     const [comments,setComments] = useGetComments(gameId)
+    const [game] = gameHook.useGetOneGames(gameId)
     
-    const createGame = useComments()
 
     const {changeHandler,submitHandler,values} = useForm(initialValues,async ({comment})=>{
-        console.log(values)
-        const newComment = await createGame(gameId,comment)
+        try {
+            const newComment = await createComment(gameId,comment)
+        console.log(newComment)
         setComments(oldComments=>[...oldComments,newComment])
+        } catch (error) {
+            console.log(error.message)
+        }
+        
     })
+
     return(
         <section id="game-details">
         <h1>Game Details</h1>

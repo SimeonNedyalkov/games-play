@@ -8,7 +8,8 @@ async function createComment(gameID,text){
 }
 async function getComments(gameId){
     const params = new URLSearchParams({
-        where:`gameID="${gameId}"`
+        where: `gameID="${gameId}"`,
+        // load: `_ownerId="${gameId}"`
     })
     console.log(`${BASE_URL}?${params.toString()}`)
     const response = await requesterAPI.get(`${BASE_URL}?${params.toString()}`)
