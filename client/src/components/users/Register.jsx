@@ -13,8 +13,7 @@ export default function Register(){
             return
         }
         try {
-            const resp = await register(email,password)
-            console.log(resp)
+            await register(email,password)
             navigate('/')
         } catch (error) {
             console.log(error.message)

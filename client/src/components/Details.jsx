@@ -2,6 +2,7 @@ import {useParams} from 'react-router-dom'
 import gameHook from '../hooks/useGames.js';
 import { useComments, useGetComments } from "../hooks/useComments.js";
 import { useForm } from "../hooks/useForm.js";
+import { useAuthContext } from '../contexts/userContext.jsx';
 
 export default function Details(){
     const initialValues = {
@@ -9,15 +10,16 @@ export default function Details(){
     }
     const {gameId} = useParams()
     const createComment = useComments()
-    const [comments,setComments] = useGetComments(gameId)
+    const [comments,dispatch] = useGetComments(gameId)
     const [game] = gameHook.useGetOneGames(gameId)
+    const {email} = useAuthContext()
     
 
     const {changeHandler,submitHandler,values} = useForm(initialValues,async ({comment})=>{
         try {
             const newComment = await createComment(gameId,comment)
-        console.log(newComment)
-        setComments(oldComments=>[...oldComments,newComment])
+            dispatch({type:'ADD_COMMENT',payload:{...newComment,author:{email}}})
+            setComments(oldComments=>[...oldComments,newComment])
         } catch (error) {
             console.log(error.message)
         }
@@ -47,7 +49,7 @@ export default function Details(){
                     {/* <!-- list all comments for current game (If any) --> */}
                     {comments.map(comment=>(
                         <li key={comment._id} className="comment">
-                            <p>Username: {comment.text}</p>
+                            <p>{comment.author?.email}: {comment.text}</p>
                         </li>
                     ))}
                     

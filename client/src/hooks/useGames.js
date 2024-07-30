@@ -6,7 +6,6 @@ function useGetAllGames(){
         async function fetchData() {
             const response = await gameAPI.getAll();
             setGames(response)
-            console.log(response)
           }
           fetchData();
         }, []);

@@ -2,7 +2,6 @@ import gameHook from '../hooks/useGames'
 export default function Home(){
     const [firstThreeGames,setFirstThreeGames] = gameHook.useFirstThreeGames()
     
-    console.log(firstThreeGames)
     return (
         <section id="welcome-world">
 

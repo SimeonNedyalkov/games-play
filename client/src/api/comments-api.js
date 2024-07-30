@@ -9,11 +9,9 @@ async function createComment(gameID,text){
 async function getComments(gameId){
     const params = new URLSearchParams({
         where: `gameID="${gameId}"`,
-        // load: `_ownerId="${gameId}"`
+        load: `author=_ownerId:users`
     })
-    console.log(`${BASE_URL}?${params.toString()}`)
     const response = await requesterAPI.get(`${BASE_URL}?${params.toString()}`)
-    console.log(response)
     return response
     
 }
