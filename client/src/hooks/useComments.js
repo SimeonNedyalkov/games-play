@@ -11,10 +11,11 @@ export function useComments(){
 export function useGetComments(gameId){
     const [comments,setComments] = useState([])
     useEffect(()=>{
-        (async (gameID)=>{
-            const result = await commentAPI.getComments(gameID)
+        (async ()=>{
+            const result = await commentAPI.getComments(gameId)
+            console.log(result)
             setComments(result)
-        })()
+        })();
     },[gameId])
     return [comments,setComments]
 }

@@ -18,7 +18,6 @@ function useGetOneGames(gameId){
         async function fetchData() {
             const response = await gameAPI.getOne(gameId);
             setGame(response)
-            console.log(response)
           }
           fetchData();
         }, [gameId]);

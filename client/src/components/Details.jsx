@@ -18,7 +18,6 @@ export default function Details(){
         const newComment = await createGame(gameId,comment)
         setComments(oldComments=>[...oldComments,newComment])
     })
-    console.log(comments)
     return(
         <section id="game-details">
         <h1>Game Details</h1>
@@ -40,15 +39,15 @@ export default function Details(){
                 <h2>Comments:</h2>
                 <ul>
                     {/* <!-- list all comments for current game (If any) --> */}
-                    <li className="comment">
-                        <p>Content: I rate this one quite highly.</p>
-                    </li>
-                    <li className="comment">
-                        <p>Content: The best game.</p>
-                    </li>
+                    {comments.map(comment=>(
+                        <li key={comment._id} className="comment">
+                            <p>Username: {comment.text}</p>
+                        </li>
+                    ))}
+                    
                 </ul>
                 {/* <!-- Display paragraph: If there are no games in the database --> */}
-                <p className="no-comment">No comments.</p>
+                {comments.length == 0 && (<p className="no-comment">No comments.</p>)}
             </div>
 
             {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
