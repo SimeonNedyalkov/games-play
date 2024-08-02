@@ -29,6 +29,10 @@ export default function Details(){
     })
     const isOwner = userId === game._ownerId
     async function gameDeleteHandler(){
+        const isConfirmed = confirm(`Are you sure you want to delete ${game.title} game`)
+        if(!isConfirmed){
+            return
+        }
         try {
             await gameAPI.deleteGame(gameId) 
             navigation('/')

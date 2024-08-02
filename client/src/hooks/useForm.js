@@ -5,7 +5,7 @@ export function useForm(initialValue,submitCallBack){
 
     useEffect(()=>{
         setValues(initialValue)
-    },[initialValue])
+    },[])
 
     const changeHandler = (e) =>{
         setValues(state=>({
