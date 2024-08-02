@@ -22,11 +22,16 @@ async function createGame(data) {
     const result =  await requester.post(`${BASE_URL}`,{...data})
     return result
 }
+async function deleteGame(gameId) {
+    const result =  await requester.del(`${BASE_URL}/${gameId}`)
+    return result
+}
 
 const gameAPI = {
     getAll,
     getOne,
     getFirstThree,
-    createGame
+    createGame,
+    deleteGame
 }
 export default gameAPI

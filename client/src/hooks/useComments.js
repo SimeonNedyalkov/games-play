@@ -2,7 +2,7 @@ import { act, useEffect, useReducer, useState } from "react";
 import commentAPI from "../api/comments-api";
 
 
-export function useComments(){
+export function useCreateComments(){
     const createHandler = (gameId,comment) =>{
         return commentAPI.createComment(gameId,comment)
     }
@@ -28,3 +28,4 @@ export function useGetComments(gameId){
     },[gameId])
     return [comments,dispatch]
 }
+

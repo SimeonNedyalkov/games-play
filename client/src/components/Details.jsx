@@ -1,19 +1,21 @@
 import {useParams} from 'react-router-dom'
 import gameHook from '../hooks/useGames.js';
-import { useComments, useGetComments } from "../hooks/useComments.js";
+import { useCreateComments, useGetComments } from "../hooks/useComments.js";
 import { useForm } from "../hooks/useForm.js";
 import { useAuthContext } from '../contexts/UserContext.jsx';
+import gameAPI from '../api/games-api.js';
+import { useNavigate } from 'react-router-dom';
 
 export default function Details(){
     const initialValues = {
         comment:'',
     }
     const {gameId} = useParams()
-    const createComment = useComments()
+    const createComment = useCreateComments()
     const [comments,dispatch] = useGetComments(gameId)
     const [game] = gameHook.useGetOneGames(gameId)
     const {userId,email} = useAuthContext()
-    
+    const navigation = useNavigate()
 
     const {changeHandler,submitHandler,values} = useForm(initialValues,async ({comment})=>{
         try {
@@ -26,7 +28,14 @@ export default function Details(){
         
     })
     const isOwner = userId === game._ownerId
-    
+    async function gameDeleteHandler(){
+        try {
+            await gameAPI.deleteGame(gameId) 
+            navigation('/')
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
     return(
         <section id="game-details">
         <h1>Game Details</h1>
@@ -63,7 +72,7 @@ export default function Details(){
             {isOwner && (
                 <div className="buttons">
                     <a href="#" className="button">Edit</a>
-                    <a href="#" className="button">Delete</a>
+                    <a href="#" onClick={gameDeleteHandler} className="button">Delete</a>
                 </div>
             )}
             
