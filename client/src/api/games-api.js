@@ -30,6 +30,15 @@ async function updateGame(gameId,data) {
     const result =  await requester.put(`${BASE_URL}/${gameId}`,data)
     return result
 }
+async function getLatest() {
+    const params = new URLSearchParams({
+        sortBy : '_createdOn desc',
+        pageSize : 3,
+    })
+    const result = await requester.get(`${BASE_URL}?${params.toString()}`)
+    const latestGames = Object.values(result)
+    return latestGames
+}
 
 const gameAPI = {
     getAll,
@@ -37,6 +46,7 @@ const gameAPI = {
     getFirstThree,
     createGame,
     deleteGame,
-    updateGame
+    updateGame,
+    getLatest
 }
 export default gameAPI

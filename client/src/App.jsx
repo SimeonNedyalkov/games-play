@@ -9,6 +9,7 @@ import {Routes,Route} from 'react-router-dom'
 import {AuthContextProvider} from "./contexts/UserContext.jsx"
 import Logout from "./components/users/Logout.jsx"
 import GameEdit from "./components/GameEdit.jsx"
+import AuthGuard from "./guards/AuthGuard.jsx"
 
 function App() {
   
@@ -23,11 +24,13 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/logout" element={<Logout/>}/>
         <Route path="/all-games" element={<Catalog/>}/>
         <Route path="/games/:gameId/details" element={<Details/>}/>
-        <Route path='/create-game' element={<GameCreate/>}/>
+        <Route element={<AuthGuard/>}>
         <Route path="/games/:gameId/edit" element={<GameEdit/>}/>
+        <Route path='/create-game' element={<GameCreate/>}/>
+        <Route path="/logout" element={<Logout/>}/>
+        </Route>
       </Routes>
     </div>
     </AuthContextProvider>
