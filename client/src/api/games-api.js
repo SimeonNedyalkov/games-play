@@ -26,12 +26,17 @@ async function deleteGame(gameId) {
     const result =  await requester.del(`${BASE_URL}/${gameId}`)
     return result
 }
+async function updateGame(gameId,data) {
+    const result =  await requester.put(`${BASE_URL}/${gameId}`,data)
+    return result
+}
 
 const gameAPI = {
     getAll,
     getOne,
     getFirstThree,
     createGame,
-    deleteGame
+    deleteGame,
+    updateGame
 }
 export default gameAPI

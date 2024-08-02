@@ -4,7 +4,7 @@ import { useCreateComments, useGetComments } from "../hooks/useComments.js";
 import { useForm } from "../hooks/useForm.js";
 import { useAuthContext } from '../contexts/UserContext.jsx';
 import gameAPI from '../api/games-api.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 export default function Details(){
     const initialValues = {
@@ -71,7 +71,7 @@ export default function Details(){
             {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
             {isOwner && (
                 <div className="buttons">
-                    <a href="#" className="button">Edit</a>
+                    <Link to={`/games/${gameId}/edit`} className="button">Edit</Link>
                     <a href="#" onClick={gameDeleteHandler} className="button">Delete</a>
                 </div>
             )}

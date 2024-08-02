@@ -8,6 +8,7 @@ import Details from './components/Details.jsx'
 import {Routes,Route} from 'react-router-dom'
 import {AuthContextProvider} from "./contexts/UserContext.jsx"
 import Logout from "./components/users/Logout.jsx"
+import GameEdit from "./components/GameEdit.jsx"
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
         <Route path="/all-games" element={<Catalog/>}/>
         <Route path="/games/:gameId/details" element={<Details/>}/>
         <Route path='/create-game' element={<GameCreate/>}/>
+        <Route path="/games/:gameId/edit" element={<GameEdit/>}/>
       </Routes>
     </div>
     </AuthContextProvider>
