@@ -1,13 +1,6 @@
 import { act, useEffect, useReducer, useState } from "react";
 import commentAPI from "../api/comments-api";
 
-
-export function useCreateComments(){
-    const createHandler = (gameId,comment) =>{
-        return commentAPI.createComment(gameId,comment)
-    }
-    return createHandler
-}
 function commentsReducer(state,action){
     switch (action.type) {
         case 'GET_ALL':
@@ -17,6 +10,12 @@ function commentsReducer(state,action){
         default:
             break;
     }
+}
+export function useCreateComments(){
+    const createHandler = (gameId,comment) =>{
+        return commentAPI.createComment(gameId,comment)
+    }
+    return createHandler
 }
 export function useGetComments(gameId){
     const [comments,dispatch] = useReducer(commentsReducer,[])

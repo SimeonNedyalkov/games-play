@@ -12,7 +12,7 @@ function useGetAllGames(){
         return [games,setGames]
 }
 function useGetOneGames(gameId){
-    const [game,setGame] = useState([])
+    const [game,setGame] = useState({})
     useEffect(()=>{
         async function fetchData() {
             const response = await gameAPI.getOne(gameId);
@@ -34,7 +34,7 @@ function useFirstThreeGames(){
         return [firstThreeGames,setFirstThreeGames]
 }
 function useCreateGame(gameData){
-    const [createdGame, setCreatedGame] = useState([])
+    const [createdGame, setCreatedGame] = useState({})
     useEffect(()=>{
         async function fetchData(){
             const response = await gameAPI.createGame(gameData)

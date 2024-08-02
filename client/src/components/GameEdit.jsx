@@ -2,6 +2,7 @@ import { useForm } from "../hooks/useForm"
 import {useNavigate, useParams} from 'react-router-dom'
 import gameHook from "../hooks/useGames"
 import gameAPI from "../api/games-api"
+import { useMemo } from "react"
 const initialValues = {
     title:'',
     category:'',
@@ -11,8 +12,10 @@ const initialValues = {
 }
 export default function GameEdit(){
     const {gameId} = useParams()
-    const [game,setGame] = gameHook.useGetOneGames(gameId)
+    const [game] = gameHook.useGetOneGames(gameId)
     const navigation = useNavigate()
+    const initialFormValues = useMemo(()=>Object.assign({},initialValues,game),[game])
+    
     console.log(game)
     const {changeHandler,submitHandler,values} = useForm(Object.assign(initialValues,game),async (values)=>{
         const isConfirmed = confirm('Are you sure you want to update this game')
@@ -20,7 +23,6 @@ export default function GameEdit(){
             await gameAPI.updateGame(gameId,values)
             navigation(`/games/${gameId}/details`)
         }
-        
     })
     return(
         <section id="edit-page" className="auth">
