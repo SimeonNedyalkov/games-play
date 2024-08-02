@@ -2,7 +2,7 @@ import {useParams} from 'react-router-dom'
 import gameHook from '../hooks/useGames.js';
 import { useComments, useGetComments } from "../hooks/useComments.js";
 import { useForm } from "../hooks/useForm.js";
-import { useAuthContext } from '../contexts/userContext.jsx';
+import { useAuthContext } from '../contexts/UserContext.jsx';
 
 export default function Details(){
     const initialValues = {

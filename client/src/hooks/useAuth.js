@@ -1,5 +1,5 @@
 import userAPI from "../api/users-api"
-import {useAuthContext} from "../contexts/userContext"
+import {useAuthContext} from "../contexts/UserContext"
 
 export function useLogin(){
     const {changeAuthState} = useAuthContext()

@@ -6,7 +6,7 @@ import Catalog from './components/gamesList/Catalog.jsx'
 import GameCreate from './components/GameCreate'
 import Details from './components/Details.jsx'
 import {Routes,Route} from 'react-router-dom'
-import {AuthContextProvider} from "./contexts/userContext.jsx"
+import {AuthContextProvider} from "./contexts/UserContext.jsx"
 import Logout from "./components/users/Logout.jsx"
 
 function App() {
